@@ -40,6 +40,10 @@ cfg_select! {
         mod wasm;
         pub use self::wasm::*;
     }
+    target_os = "beetos" => {
+        mod beetos;
+        pub use self::beetos::*;
+    }
     target_os = "xous" => {
         mod xous;
         pub use self::xous::*;
