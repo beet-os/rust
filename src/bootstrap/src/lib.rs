@@ -840,8 +840,8 @@ impl Build {
             features.insert("profiler");
         }
 
-        // If zkvm target, generate memcpy, etc.
-        if target.contains("zkvm") {
+        // If zkvm or beetos target, generate memcpy, etc.
+        if target.contains("zkvm") || target.contains("beetos") {
             features.insert("compiler-builtins-mem");
         }
 
