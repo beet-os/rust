@@ -41,6 +41,7 @@ fn main() {
         || target.triple.contains("nvptx")
         || target.triple.contains("uefi")
         || target.triple.contains("xous")
+        || target.triple.contains("beetos")
     {
         println!("cargo:rustc-cfg=feature=\"mem\"");
     }
