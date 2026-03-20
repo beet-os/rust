@@ -116,6 +116,7 @@ pub(crate) mod guard {
             }
         }
         any(
+            target_os = "beetos",
             target_os = "hermit",
             target_os = "xous",
         ) => {
@@ -176,6 +177,16 @@ pub(crate) mod key {
             pub(super) use racy::LazyKey;
             pub(super) use sgx::{Key, get, set};
             use sgx::{create, destroy};
+        }
+        target_os = "beetos" => {
+            mod racy;
+            #[cfg(test)]
+            mod tests;
+            mod beetos;
+            pub(super) use racy::LazyKey;
+            pub(crate) use beetos::destroy_tls;
+            pub(super) use beetos::{Key, get, set};
+            use beetos::{create, destroy};
         }
         target_os = "xous" => {
             mod racy;

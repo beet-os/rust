@@ -33,6 +33,10 @@ cfg_select! {
         mod itron;
         pub use itron::Condvar;
     }
+    target_os = "beetos" => {
+        mod beetos;
+        pub use beetos::Condvar;
+    }
     target_os = "xous" => {
         mod xous;
         pub use xous::Condvar;

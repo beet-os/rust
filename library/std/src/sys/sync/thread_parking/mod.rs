@@ -31,6 +31,10 @@ cfg_select! {
         mod darwin;
         pub use darwin::Parker;
     }
+    target_os = "beetos" => {
+        mod beetos;
+        pub use beetos::Parker;
+    }
     target_os = "xous" => {
         mod xous;
         pub use xous::Parker;

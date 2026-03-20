@@ -27,6 +27,7 @@ cfg_select! {
         windows,
         target_family = "unix",
         all(target_vendor = "fortanix", target_env = "sgx"),
+        target_os = "beetos",
         target_os = "solid_asp3",
         target_os = "xous",
     ) => {

@@ -40,6 +40,10 @@ cfg_select! {
         mod windows;
         use windows as imp;
     }
+    target_os = "beetos" => {
+        mod beetos;
+        use beetos as imp;
+    }
     target_os = "xous" => {
         mod xous;
         use xous as imp;

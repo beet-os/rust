@@ -181,6 +181,8 @@ pub mod uefi;
 pub mod vita;
 #[cfg(target_os = "vxworks")]
 pub mod vxworks;
+#[cfg(target_os = "beetos")]
+pub mod beetos;
 #[cfg(target_os = "xous")]
 pub mod xous;
 

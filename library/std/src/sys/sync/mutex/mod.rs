@@ -36,6 +36,10 @@ cfg_select! {
         mod itron;
         pub use itron::Mutex;
     }
+    target_os = "beetos" => {
+        mod beetos;
+        pub use beetos::Mutex;
+    }
     target_os = "xous" => {
         mod xous;
         pub use xous::Mutex;

@@ -101,6 +101,9 @@ cfg_select! {
     target_family = "wasm" => {
         mod wasm;
     }
+    target_os = "beetos" => {
+        mod beetos;
+    }
     target_os = "xous" => {
         mod xous;
     }

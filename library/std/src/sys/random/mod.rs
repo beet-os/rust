@@ -104,11 +104,12 @@ cfg_select! {
     }
     any(
         all(target_family = "wasm", target_os = "unknown"),
+        target_os = "beetos",
         target_os = "xous",
         target_os = "vexos",
     ) => {
         // FIXME: finally remove std support for wasm32-unknown-unknown
-        // FIXME: add random data generation to xous
+        // FIXME: add random data generation to xous and beetos
         mod unsupported;
         pub use unsupported::{fill_bytes, hashmap_random_keys};
     }
@@ -120,6 +121,7 @@ cfg_select! {
     target_os = "android",
     all(target_family = "wasm", target_os = "unknown"),
     all(target_os = "wasi", not(target_env = "p1")),
+    target_os = "beetos",
     target_os = "xous",
     target_os = "vexos",
 )))]

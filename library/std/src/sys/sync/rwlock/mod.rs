@@ -18,6 +18,7 @@ cfg_select! {
         target_family = "unix",
         all(target_os = "windows", target_vendor = "win7"),
         all(target_vendor = "fortanix", target_env = "sgx"),
+        target_os = "beetos",
         target_os = "xous",
         target_os = "teeos",
     ) => {

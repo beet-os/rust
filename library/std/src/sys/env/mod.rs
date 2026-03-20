@@ -4,6 +4,7 @@
 
 #[cfg(any(
     target_family = "unix",
+    target_os = "beetos",
     target_os = "hermit",
     target_os = "motor",
     all(target_vendor = "fortanix", target_env = "sgx"),
@@ -46,6 +47,10 @@ cfg_select! {
     target_os = "wasi" => {
         mod wasi;
         pub use wasi::*;
+    }
+    target_os = "beetos" => {
+        mod beetos;
+        pub use beetos::*;
     }
     target_os = "xous" => {
         mod xous;
