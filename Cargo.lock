@@ -6944,3 +6944,8 @@ dependencies = [
  "quote",
  "syn 2.0.110",
 ]
+
+[[patch.unused]]
+name = "dlmalloc"
+version = "0.2.13"
+source = "git+https://github.com/beet-os/dlmalloc-rs?branch=beetos#ca739e7c1c9ccd4ab5438ad772f245af984035dc"
