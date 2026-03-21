@@ -15,7 +15,7 @@ use crate::sync::atomic::{Atomic, AtomicPtr, AtomicUsize};
 pub type Key = usize;
 pub type Dtor = unsafe extern "C" fn(*mut u8);
 
-const TLS_MEMORY_SIZE: usize = 4096;
+const TLS_MEMORY_SIZE: usize = 16 * 1024; // BeetOS uses 16KB pages (AArch64); must be page-aligned
 
 #[cfg(not(test))]
 #[unsafe(export_name = "_ZN16__rust_internals3std3sys6beetos16thread_local_key13TLS_KEY_INDEXE")]
@@ -64,8 +64,9 @@ fn tls_table() -> &'static mut [*mut u8] {
         .expect("Unable to allocate memory for thread local storage")
     };
 
-    for val in tp.iter() {
-        assert!(*val as usize == 0);
+    // BeetOS: zero the TLS table explicitly — MapMemory does not guarantee zero-initialized pages.
+    for val in tp.iter_mut() {
+        *val = core::ptr::null_mut();
     }
 
     unsafe {

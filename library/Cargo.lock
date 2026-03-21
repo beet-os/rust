@@ -78,9 +78,8 @@ dependencies = [
 
 [[package]]
 name = "dlmalloc"
-version = "0.2.11"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "06cdfe340b16dd990c54cce79743613fa09fbb16774f33a77c9fd196f8f3fa30"
+version = "0.2.13"
+source = "git+https://github.com/beet-os/dlmalloc-rs?branch=beetos#ca739e7c1c9ccd4ab5438ad772f245af984035dc"
 dependencies = [
  "cfg-if",
  "libc",
