@@ -52,7 +52,16 @@ pub(crate) fn log_server() -> Connection {
         return cid.into();
     }
 
-    let cid = crate::os::beetos::ffi::connect("xous-log-server ".try_into().unwrap()).unwrap();
+    // In BeetOS, Connect behaves like TryConnect (returns ServerNotFound immediately
+    // if the server isn't up yet). Spin-yield until the log server registers.
+    let cid = loop {
+        let addr = "xous-log-server ".try_into().unwrap();
+        match crate::os::beetos::ffi::try_connect(addr) {
+            Ok(Some(conn)) => break conn,
+            _ => crate::os::beetos::ffi::do_yield(),
+        }
+    };
+
     LOG_SERVER_CONNECTION.store(cid.into(), Ordering::Relaxed);
     cid
 }

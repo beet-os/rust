@@ -18,9 +18,9 @@ impl Stdout {
 
 impl io::Write for Stdout {
     fn write(&mut self, buf: &[u8]) -> io::Result<usize> {
-        #[repr(C, align(4096))]
-        struct LendBuffer([u8; 4096]);
-        let mut lend_buffer = LendBuffer([0u8; 4096]);
+        #[repr(C, align(16384))]
+        struct LendBuffer([u8; 16384]);
+        let mut lend_buffer = LendBuffer([0u8; 16384]);
         let connection = log_server();
         for chunk in buf.chunks(lend_buffer.0.len()) {
             for (dest, src) in lend_buffer.0.iter_mut().zip(chunk) {
@@ -45,9 +45,9 @@ impl Stderr {
 
 impl io::Write for Stderr {
     fn write(&mut self, buf: &[u8]) -> io::Result<usize> {
-        #[repr(C, align(4096))]
-        struct LendBuffer([u8; 4096]);
-        let mut lend_buffer = LendBuffer([0u8; 4096]);
+        #[repr(C, align(16384))]
+        struct LendBuffer([u8; 16384]);
+        let mut lend_buffer = LendBuffer([0u8; 16384]);
         let connection = log_server();
         for chunk in buf.chunks(lend_buffer.0.len()) {
             for (dest, src) in lend_buffer.0.iter_mut().zip(chunk) {
